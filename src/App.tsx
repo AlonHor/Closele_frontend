@@ -33,6 +33,7 @@ function App() {
 
   useEffect(() => {
     focusInputRef.current?.focus();
+    focusInputRef.current?.click();
 
     socket.on('connect', () => {
       setIsConnected(true);
@@ -247,7 +248,7 @@ function App() {
         </button>
       )}
       <div ref={scrollIntoViewRef}></div>
-      <input style={{opacity: 0}} ref={focusInputRef} />
+      <input style={{opacity: 0}} ref={focusInputRef} value={liveGuess} onChange={(e) => setLiveGuess(e.target.value)} autoFocus={true} />
     </>
   );
 }
