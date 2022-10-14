@@ -46,11 +46,24 @@ function App() {
 
     socket.on('gameOver', (data: { secretWord: string }) => {
       setGameOver((go) => {
-        if (!go)
+        if (!go) {
           toast.error(`You gave up! The secret word was ${data.secretWord}`);
+          setGuesses((g) => [
+            ...g,
+            {
+              guess: data.secretWord,
+              hint: '',
+              similarity: 1,
+              newSimilarity: 1,
+              win: true,
+            },
+          ]);
+        }
         return true;
       });
       socket.disconnect();
+      scrollToBottom();
+      setLiveGuess('');
     });
 
     socket.on('hint', (data: any) => {
@@ -67,6 +80,7 @@ function App() {
             win: true,
           },
         ]);
+        socket.disconnect();
         scrollToBottom();
         setLiveGuess('');
       } else if (data.hint) {
@@ -99,6 +113,8 @@ function App() {
       socket.off('connect');
       socket.off('disconnect');
       socket.off('hint');
+      socket.off('gameOver');
+      socket.off('info');
     };
   }, []);
 
@@ -147,7 +163,7 @@ function App() {
             <span className="Guess">{guess.guess}</span>
             {!guess.win && (
               <span className="Hint">
-                {guess.hint === "You're very close!" ? 'CLOSE!' : guess.hint}
+                {guess.hint === "You're very close!" ? 'close!' : guess.hint}
               </span>
             )}
             <span
@@ -218,7 +234,11 @@ function App() {
         </div>
       )}
       <p>Socket is {isConnected ? 'connected' : 'disconnected'}.</p>
-      {!gameOver && <button onClick={giveUp}>Give up</button>}
+      {!gameOver && guesses.length > 0 && (
+        <button className="GiveUp" onClick={giveUp}>
+          Give up
+        </button>
+      )}
       <div ref={scrollIntoViewRef}></div>
     </>
   );
