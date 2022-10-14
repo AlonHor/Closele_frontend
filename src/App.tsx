@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const socket = io('ws://localhost:3000');
+const socket = io('wss://closele-backend.herokuapp.com');
 
 type guess = {
   guess: string;
