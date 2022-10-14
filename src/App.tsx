@@ -27,10 +27,13 @@ function App() {
   const [gameOver, setGameOver] = useState<boolean>(false);
 
   const scrollIntoViewRef = useRef<HTMLDivElement>(null);
+  const focusInputRef = useRef<HTMLInputElement>(null);
 
   const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
   useEffect(() => {
+    focusInputRef.current?.focus();
+
     socket.on('connect', () => {
       setIsConnected(true);
     });
@@ -131,6 +134,10 @@ function App() {
       setLiveGuess((lg) => lg + e.key.toLowerCase());
       scrollToBottom();
     }
+  };
+
+  window.onblur = () => {
+    focusInputRef.current?.focus();
   };
 
   function scrollToBottom() {
@@ -240,6 +247,7 @@ function App() {
         </button>
       )}
       <div ref={scrollIntoViewRef}></div>
+      <input style={{width: 0}} ref={focusInputRef} />
     </>
   );
 }
