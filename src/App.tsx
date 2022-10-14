@@ -27,14 +27,10 @@ function App() {
   const [gameOver, setGameOver] = useState<boolean>(false);
 
   const scrollIntoViewRef = useRef<HTMLDivElement>(null);
-  const focusInputRef = useRef<HTMLInputElement>(null);
 
   const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
   useEffect(() => {
-    focusInputRef.current?.focus();
-    focusInputRef.current?.click();
-
     socket.on('connect', () => {
       setIsConnected(true);
     });
@@ -135,21 +131,6 @@ function App() {
       setLiveGuess((lg) => lg + e.key.toLowerCase());
       scrollToBottom();
     }
-  };
-
-  function tryAddLetter(letter: string) {
-    if (
-      letter.length === 1 &&
-      letters.includes(letter.toLowerCase()) &&
-      liveGuess.length < 8
-    ) {
-      setLiveGuess((lg) => lg + letter.toLowerCase());
-      scrollToBottom();
-    }
-  }
-
-  window.onblur = () => {
-    focusInputRef.current?.focus();
   };
 
   function scrollToBottom() {
@@ -259,13 +240,6 @@ function App() {
         </button>
       )}
       <div ref={scrollIntoViewRef}></div>
-      <input
-        style={{ opacity: 0 }}
-        ref={focusInputRef}
-        value={liveGuess}
-        onChange={(e) => tryAddLetter(e.target.value)}
-        autoFocus={true}
-      />
     </>
   );
 }
