@@ -175,15 +175,15 @@ function App() {
               {!guess.win ? (
                 <>
                   {guess.hint !== "You're very close!" && (
-                      <span
-                        className="Similarity__New"
-                        style={{ width: `${guess.newSimilarity * 460}px` }}
-                      ></span>
+                    <span
+                      className="Similarity__New"
+                      style={{ width: `${guess.newSimilarity * 460}px` }}
+                    ></span>
                   )}
-                      <span
-                        className="Similarity__Inside"
-                        style={{ width: `${guess.similarity * 460}px` }}
-                      ></span>
+                  <span
+                    className="Similarity__Inside"
+                    style={{ width: `${guess.similarity * 460}px` }}
+                  ></span>
                 </>
               ) : (
                 <div></div>
