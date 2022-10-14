@@ -247,7 +247,7 @@ function App() {
         </button>
       )}
       <div ref={scrollIntoViewRef}></div>
-      <input style={{width: 0}} ref={focusInputRef} />
+      <input style={{opacity: 0}} ref={focusInputRef} />
     </>
   );
 }
