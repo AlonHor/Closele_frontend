@@ -1,0 +1,223 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@keyframes flyIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+    width: 0.5rem;
+    filter: blur(2px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    width: default;
+    filter: blur(0px);
+  }
+}
+
+.Char {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  /* outline: none; */
+  outline: 1px solid #ffffff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
+  padding: 2rem;
+  transition: all 0.1s;
+  font-size: 3rem;
+  font-weight: 400;
+  border-top: white 1rem solid;
+  animation: flyIn 0.5s ease-in-out forwards;
+  width: 3rem;
+  display: inline-block;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  /* outline: none; */
+  outline: 1px solid #ffffff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
+  padding: 2rem;
+  transition: all 0.2s;
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+
+button:active {
+  background-color: #444;
+}
+
+.Char:hover {
+  background-color: #333;
+}
+
+.Char:active {
+  background-color: #444;
+}
+
+.Char:focus {
+  background-color: #333;
+}
+
+.Guesses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 1rem;
+  /* max-width: 460px; */
+  /* position: absolute; */
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.Guess {
+  /* display: flex; */
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #333333;
+  transition: all 0.2s;
+}
+
+.Hint {
+  /* display: flex; */
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #333333;
+  transition: all 0.2s;
+}
+
+.Similarity__Full {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #333333;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
+}
+
+.Similarity__Win {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #452;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
+}
+
+.Similarity__Full {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #333333;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
+}
+.Similarity__Inside {
+  display: flex;
+  z-index: 2;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  background-color: #33f;
+  padding: 0.5rem;
+  transition: all 0.2s;
+  border-radius: 0.5rem;
+}
+
+.Similarity__New {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  background-color: #452;
+  padding: 0.5rem;
+  transition: all 0.2s;
+  border-radius: 0.5rem;
+}
+
+/* change the style of selecting text */
+::selection {
+  background-color: #555;
+  color: #fff;
+}
