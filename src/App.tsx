@@ -137,6 +137,17 @@ function App() {
     }
   };
 
+  function tryAddLetter(letter: string) {
+    if (
+      letter.length === 1 &&
+      letters.includes(letter.toLowerCase()) &&
+      liveGuess.length < 8
+    ) {
+      setLiveGuess((lg) => lg + letter.toLowerCase());
+      scrollToBottom();
+    }
+  }
+
   window.onblur = () => {
     focusInputRef.current?.focus();
   };
@@ -248,7 +259,13 @@ function App() {
         </button>
       )}
       <div ref={scrollIntoViewRef}></div>
-      <input style={{opacity: 0}} ref={focusInputRef} value={liveGuess} onChange={(e) => setLiveGuess(e.target.value)} autoFocus={true} />
+      <input
+        style={{ opacity: 0 }}
+        ref={focusInputRef}
+        value={liveGuess}
+        onChange={(e) => tryAddLetter(e.target.value)}
+        autoFocus={true}
+      />
     </>
   );
 }
