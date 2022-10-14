@@ -163,7 +163,7 @@ function App() {
             <span className="Guess">{guess.guess}</span>
             {!guess.win && (
               <span className="Hint">
-                {guess.hint === "You're very close!" ? 'close!' : guess.hint}
+                {guess.hint === "You're very close!" ? 'no hint' : guess.hint}
               </span>
             )}
             <span
