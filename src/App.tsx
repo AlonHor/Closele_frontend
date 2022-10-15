@@ -156,7 +156,7 @@ function App() {
             opacity: 0,
             stagger: 1,
             x: 200,
-            y: 200,
+            y: -50,
             z: 200,
             duration: 0.5,
           });
