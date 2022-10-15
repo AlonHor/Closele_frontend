@@ -5,21 +5,6 @@
   text-align: center;
 }
 
-@keyframes flyIn {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-    width: 0.5rem;
-    filter: blur(2px);
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-    width: default;
-    filter: blur(0px);
-  }
-}
-
 .Char {
   font-family: inherit;
   font-size: inherit;
@@ -40,7 +25,6 @@
   font-size: 3rem;
   font-weight: 400;
   border-top: white 1rem solid;
-  animation: flyIn 0.5s ease-in-out forwards;
   width: 3rem;
   display: inline-block;
 }
