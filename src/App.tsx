@@ -95,8 +95,8 @@ function App() {
           toast.info(`Hint: ${data.hint}`);
 
           setHintLetters((hl) => {
-            if (hl !== data.letters)
-              gsap.to('.Letter', { duration: 0.5, opacity: 1, stagger: 0.1 });
+            if (hl === data.letters)
+              gsap.from('.Letter', { duration: 0.5, x: 100, stagger: 0.5 });
             return data.letters;
           });
           setGuesses((g) => [
@@ -139,9 +139,10 @@ function App() {
         setTimeout(() => {
           gsap.from(`.Char__${e.key.toLowerCase()}__${LG.length}`, {
             opacity: 0,
-            x: 'random(-100, 100, 5)',
-            y: 'random(-100, 100, 5)',
-            z: 'random(-100, 100, 5)',
+            stagger: 1,
+            x: 200,
+            y: 200,
+            z: 200,
             duration: 0.5,
           });
         }, 10);
