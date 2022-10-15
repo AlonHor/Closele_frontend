@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import gsap from 'gsap';
 
 const socket = io('wss://closele-backend.herokuapp.com');
 
@@ -92,7 +93,12 @@ function App() {
           toast.warning('You must enter a word!');
         } else {
           toast.info(`Hint: ${data.hint}`);
-          setHintLetters(data.letters);
+
+          setHintLetters((hl) => {
+            if (hl !== data.letters)
+              gsap.to('.Letter', { duration: 0.5, opacity: 1, stagger: 0.1 });
+            return data.letters;
+          });
           setGuesses((g) => [
             ...g,
             {
@@ -128,7 +134,17 @@ function App() {
       letters.includes(e.key.toLowerCase()) &&
       liveGuess.length < 8
     ) {
-      setLiveGuess((lg) => lg + e.key.toLowerCase());
+      setLiveGuess((lg) => {
+        gsap.fromTo(
+          `.Char__${e.key.toLowerCase()}__${lg.length}`,
+          { opacity: 0 },
+          {
+            duration: 0.5,
+            opacity: 1,
+          },
+        );
+        return lg + e.key.toLowerCase();
+      });
       scrollToBottom();
     }
   };
@@ -194,7 +210,7 @@ function App() {
       </div>
       <div>
         {liveGuess.split('').map((char, index) => (
-          <span key={index} className="Char">
+          <span key={index} className={`Char Char__${char}__${index}`}>
             {char}
           </span>
         ))}
@@ -222,7 +238,7 @@ function App() {
             <p>
               The word contains the letter(s){' '}
               {hintLetters.map((letter, index) => (
-                <span key={index}>
+                <span key={index} className="Letter">
                   {letter}
                   {index === hintLetters.length - 1 ? '' : ', '}
                 </span>
