@@ -135,14 +135,18 @@ function App() {
       liveGuess.length < 8
     ) {
       setLiveGuess((lg) => {
-        gsap.fromTo(
-          `.Char__${e.key.toLowerCase()}__${lg.length}`,
-          { opacity: 0 },
-          {
-            duration: 0.5,
-            opacity: 1,
-          },
-        );
+        const LG = lg;
+        setTimeout(() => {
+          gsap.fromTo(
+            `.Char__${e.key.toLowerCase()}__${LG.length}`,
+            { opacity: 0, x: 100 },
+            {
+              duration: 0.5,
+              opacity: 1,
+              x: 0,
+            },
+          );
+        }, 10);
         return lg + e.key.toLowerCase();
       });
       scrollToBottom();
