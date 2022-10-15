@@ -255,7 +255,7 @@ function App() {
       {firstLetter && length && !gameOver && (
         <div>
           <p>
-            {'The word starts with {firstLetter} and is {length} letters long.'}
+            {`The word starts with ${firstLetter} and is ${length} letters long.`}
           </p>
           {hintLetters.length > 0 && (
             <p>
