@@ -140,8 +140,8 @@ function App() {
           gsap.from(`.Char__${e.key.toLowerCase()}__${LG.length}`, {
             opacity: 0,
             x: 'random(-100, 100, 5)',
-            y: 'random(-10, 20, 5)',
-            z: 'random(-10, 10, 5)',
+            y: 'random(-100, 100, 5)',
+            z: 'random(-100, 100, 5)',
             duration: 0.5,
           });
         }, 10);
