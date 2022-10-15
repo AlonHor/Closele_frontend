@@ -137,16 +137,13 @@ function App() {
       setLiveGuess((lg) => {
         const LG = lg;
         setTimeout(() => {
-          gsap.fromTo(
-            `.Char__${e.key.toLowerCase()}__${LG.length}`,
-            { opacity: 0, x: 'random(-100, 100, 5)', y: 'random(-10, 20, 5)' },
-            {
-              duration: 0.5,
-              opacity: 1,
-              x: 0,
-              y: 0,
-            },
-          );
+          gsap.from(`.Char__${e.key.toLowerCase()}__${LG.length}`, {
+            opacity: 0,
+            x: 'random(-100, 100, 5)',
+            y: 'random(-10, 20, 5)',
+            z: 'random(-10, 10, 5)',
+            duration: 0.5,
+          });
         }, 10);
         return lg + e.key.toLowerCase();
       });
