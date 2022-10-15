@@ -8,20 +8,34 @@ import gsap from 'gsap';
 
 const socket = io('wss://closele-backend.herokuapp.com');
 
-type guess = {
+const MAX_LENGTH = 8;
+const SHORT_DELAY = 10;
+const TOAST_CLOSE_DURATION = 2000;
+
+interface Guess {
   guess: string;
   hint: string;
   similarity: number;
   newSimilarity: number;
   win: boolean;
-};
+}
+
+interface Hint {
+  guess: string;
+  hint: string;
+  similarity: number;
+  newSimilarity: number;
+  win: boolean;
+  err: string;
+  letters: string[];
+}
 
 function App() {
   let GUESS = '';
 
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [liveGuess, setLiveGuess] = useState<string>('');
-  const [guesses, setGuesses] = useState<guess[]>([]);
+  const [guesses, setGuesses] = useState<Guess[]>([]);
   const [firstLetter, setFirstLetter] = useState<string>('');
   const [length, setLength] = useState<number>(0);
   const [hintLetters, setHintLetters] = useState<string[]>([]);
@@ -67,7 +81,7 @@ function App() {
       setLiveGuess('');
     });
 
-    socket.on('hint', (data: any) => {
+    socket.on('hint', (data: Hint) => {
       if (data.win === true) {
         toast.success(`Thats it! The word is ${data.guess}!`);
         setGameOver(true);
@@ -85,32 +99,33 @@ function App() {
         scrollToBottom();
         setLiveGuess('');
       } else if (data.hint) {
-        if (data.hint === 'not in dict') {
-          toast.warning('There is no such word in the dictionary!');
-        } else if (data.hint === 'error') {
-          toast.error('Error: ' + data.err);
-        } else if (data.hint === 'no word') {
-          toast.warning('You must enter a word!');
-        } else {
-          toast.info(`Hint: ${data.hint}`);
+        switch (data.hint) {
+          case 'not in dict':
+            toast.warning('There is no such word in the dictionary!');
+          case 'error':
+            toast.error('Error: ' + data.err);
+          case 'no word':
+            toast.warning('You must enter a word!');
+          default:
+            toast.info(`Hint: ${data.hint}`);
 
-          setHintLetters((hl) => {
-            if (hl === data.letters)
-              gsap.from('.Letter', { duration: 0.5, x: 100, stagger: 0.5 });
-            return data.letters;
-          });
-          setGuesses((g) => [
-            ...g,
-            {
-              guess: data.guess,
-              hint: data.hint,
-              similarity: data.similarity,
-              newSimilarity: data.newSimilarity,
-              win: false,
-            },
-          ]);
-          scrollToBottom();
-          setLiveGuess('');
+            setHintLetters((hl) => {
+              if (hl === data.letters)
+                gsap.from('.Letter', { duration: 0.5, x: 100, stagger: 0.5 });
+              return data.letters;
+            });
+            setGuesses((g) => [
+              ...g,
+              {
+                guess: data.guess,
+                hint: data.hint,
+                similarity: data.similarity,
+                newSimilarity: data.newSimilarity,
+                win: false,
+              },
+            ]);
+            scrollToBottom();
+            setLiveGuess('');
         }
       }
     });
@@ -132,7 +147,7 @@ function App() {
     else if (
       e.key.length === 1 &&
       letters.includes(e.key.toLowerCase()) &&
-      liveGuess.length < 8
+      liveGuess.length < MAX_LENGTH
     ) {
       setLiveGuess((lg) => {
         const LG = lg;
@@ -145,7 +160,7 @@ function App() {
             z: 200,
             duration: 0.5,
           });
-        }, 10);
+        }, SHORT_DELAY);
         return lg + e.key.toLowerCase();
       });
       scrollToBottom();
@@ -155,7 +170,7 @@ function App() {
   function scrollToBottom() {
     setTimeout(() => {
       scrollIntoViewRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 10);
+    }, SHORT_DELAY);
   }
 
   function giveUp() {
@@ -177,72 +192,77 @@ function App() {
   return (
     <>
       <div className="Guesses">
-        {guesses.map((guess, index) => (
+        {guesses.map((guessObj, index) => (
           <div key={index}>
-            <span className="Guess">{guess.guess}</span>
-            {!guess.win && (
+            <span className="Guess">{guessObj.guess}</span>
+            {!guessObj.win && (
               <span className="Hint">
-                {guess.hint === "You're very close!" ? 'no hint' : guess.hint}
+                {guessObj.hint === "You're very close!"
+                  ? 'no hint'
+                  : guessObj.hint}
               </span>
             )}
             <span
-              className={`${
-                guess.win ? 'Similarity__Win' : 'Similarity__Full'
-              }`}
+              className={guessObj.win ? 'Similarity__Win' : 'Similarity__Full'}
               style={{ width: `${460}px` }}
             >
-              {!guess.win ? (
+              {!guessObj.win && (
                 <>
-                  {guess.hint !== "You're very close!" && (
+                  {guessObj.hint !== "You're very close!" && (
                     <span
                       className="Similarity__New"
-                      style={{ width: `${guess.newSimilarity * 460}px` }}
-                    ></span>
+                      style={{ width: `${guessObj.newSimilarity * 460}px` }}
+                    />
                   )}
                   <span
                     className="Similarity__Inside"
-                    style={{ width: `${guess.similarity * 460}px` }}
-                  ></span>
+                    style={{ width: `${guessObj.similarity * 460}px` }}
+                  />
                 </>
-              ) : (
-                <div></div>
               )}
             </span>
           </div>
         ))}
       </div>
       <div>
-        {liveGuess.split('').map((char, index) => (
-          <span key={index} className={`Char Char__${char}__${index}`}>
-            {char}
+        {liveGuess.split('').map((character: string, index) => (
+          <span key={index} className={`Char Char__${character}__${index}`}>
+            {character}
           </span>
         ))}
       </div>
-      <ToastContainer theme="dark" pauseOnHover={true} autoClose={2000} />
+      <ToastContainer
+        theme="dark"
+        pauseOnHover={true}
+        autoClose={TOAST_CLOSE_DURATION}
+      />
       {liveGuess.length === 0 && guesses.length === 0 && (
         <div className="Instructions">
-          <h1>Guess the word!</h1>
-          <p>Enter a word and press enter to guess.</p>
-          <p>Press delete to clear the word.</p>
-          <p>A hint will be given if the word is not correct.</p>
+          <h1>{'Guess the word!'}</h1>
+          <p>{'Enter a word and press enter to guess.'}</p>
+          <p>{'Press delete to clear the word.'}</p>
+          <p>{'A hint will be given if the word is not correct.'}</p>
           <p>
-            The blue bar shows how close the guessed word is to the correct
-            word.
+            {
+              'The blue bar shows how close the guessed word is to the correct word.'
+            }
           </p>
-          <p>The green bar shows how close the hint is to the correct word.</p>
+          <p>
+            {'The green bar shows how close the hint is to the correct word.'}
+          </p>
         </div>
       )}
       {firstLetter && length && !gameOver && (
         <div>
           <p>
-            The word starts with {firstLetter} and is {length} letters long.
+            {'The word starts with {firstLetter} and is {length} letters long.'}
           </p>
           {hintLetters.length > 0 && (
             <p>
-              The word contains the letter(s){' '}
-              {hintLetters.map((letter, index) => (
+              {'The word contains the letter(s) '}
+              {hintLetters.map((hintLetter: string, index) => (
                 <span key={index} className="Letter">
-                  {letter}
+                  {hintLetter}
                   {index === hintLetters.length - 1 ? '' : ', '}
                 </span>
               ))}
@@ -250,13 +270,13 @@ function App() {
           )}
         </div>
       )}
-      <p>Socket is {isConnected ? 'connected' : 'disconnected'}.</p>
+      <p>{`Socket is ${isConnected ? 'connected' : 'disconnected'}.`}</p>
       {!gameOver && guesses.length > 0 && (
         <button className="GiveUp" onClick={giveUp}>
-          Give up
+          {'Give up'}
         </button>
       )}
-      <div ref={scrollIntoViewRef}></div>
+      <div ref={scrollIntoViewRef} />
     </>
   );
 }
