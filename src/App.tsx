@@ -99,32 +99,32 @@ function App() {
         scrollToBottom();
         setLiveGuess('');
       } else if (data.hint) {
-        switch (data.hint) {
-          case 'not in dict':
-            toast.warning('There is no such word in the dictionary!');
-          case 'error':
-            toast.error('Error: ' + data.err);
-          case 'no word':
-            toast.warning('You must enter a word!');
-          default:
-            toast.info(`Hint: ${data.hint}`);
-            setHintLetters((hl) => {
-              if (hl === data.letters)
-                gsap.from('.Letter', { duration: 0.5, x: 100, stagger: 0.5 });
-              return data.letters;
-            });
-            setGuesses((g) => [
-              ...g,
-              {
-                guess: data.guess,
-                hint: data.hint,
-                similarity: data.similarity,
-                newSimilarity: data.newSimilarity,
-                win: false,
-              },
-            ]);
-            scrollToBottom();
-            setLiveGuess('');
+        if (data.hint === 'not in dict') {
+          toast.warning('There is no such word in the dictionary!');
+        } else if (data.hint === 'error') {
+          toast.error('Error: ' + data.err);
+        } else if (data.hint === 'no word') {
+          toast.warning('You must enter a word!');
+        } else {
+          toast.info(`Hint: ${data.hint}`);
+
+          setHintLetters((hl) => {
+            if (hl !== data.letters)
+              gsap.to('.Letter', { duration: 0.5, opacity: 1, stagger: 0.1 });
+            return data.letters;
+          });
+          setGuesses((g) => [
+            ...g,
+            {
+              guess: data.guess,
+              hint: data.hint,
+              similarity: data.similarity,
+              newSimilarity: data.newSimilarity,
+              win: false,
+            },
+          ]);
+          scrollToBottom();
+          setLiveGuess('');
         }
       }
     });
@@ -153,10 +153,9 @@ function App() {
         setTimeout(() => {
           gsap.from(`.Char__${e.key.toLowerCase()}__${LG.length}`, {
             opacity: 0,
-            stagger: 1,
-            x: 200,
-            y: -50,
-            z: 200,
+            x: 'random(-100, 100, 5)',
+            y: 'random(-100, 100, 5)',
+            z: 'random(-100, 100, 5)',
             duration: 0.5,
           });
         }, SHORT_DELAY);
