@@ -176,7 +176,7 @@ function App() {
   }
 
   function guess() {
-    if (gameOver) return;
+    if (gameOver) return toast.error('The game is over!');
     if (liveGuess.match(/^\s*$/)) {
       setLiveGuess('');
       toast.warning('You must enter a word!');
