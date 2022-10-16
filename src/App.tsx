@@ -76,15 +76,13 @@ function App() {
         }
         return true;
       });
-      socket.disconnect();
-      scrollToBottom();
-      setLiveGuess('');
+      endGame();
     });
 
     socket.on('hint', (data: Hint) => {
       if (data.win === true) {
         toast.success(`Thats it! The word is ${data.guess}!`);
-        setGameOver(true);
+        endGame();
         setGuesses((g) => [
           ...g,
           {
@@ -95,9 +93,6 @@ function App() {
             win: true,
           },
         ]);
-        socket.disconnect();
-        scrollToBottom();
-        setLiveGuess('');
       } else if (data.hint) {
         if (data.hint === 'not in dict') {
           toast.warning('There is no such word in the dictionary!');
@@ -164,6 +159,13 @@ function App() {
       scrollToBottom();
     }
   };
+
+  function endGame() {
+    setGameOver(true);
+    socket.disconnect();
+    scrollToBottom();
+    setLiveGuess('');
+  }
 
   function scrollToBottom() {
     setTimeout(() => {
@@ -270,8 +272,13 @@ function App() {
       )}
       <p>{`Socket is ${isConnected ? 'connected' : 'disconnected'}.`}</p>
       {!gameOver && guesses.length > 0 && (
-        <button className="GiveUp" onClick={giveUp}>
+        <button className="TopLeftButton" onClick={giveUp}>
           {'Give up'}
+        </button>
+      )}
+      {gameOver && (
+        <button className="TopLeftButton" onClick={() => window.location.reload()}>
+          {'Play again'}
         </button>
       )}
       <div ref={scrollIntoViewRef} />
