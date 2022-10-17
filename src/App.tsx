@@ -228,19 +228,19 @@ function App() {
               </span>
             )}
             <span
-              className={guessObj.win ? `Similarity__Win${isMobile && ' MobileSimilarityWin'}` : `Similarity__Full${isMobile && ' MobileSimilarityFull'}`}
+              className={guessObj.win ? 'Similarity__Win' : 'Similarity__Full'}
               style={{ width: `${isMobile ? 230 : 460}px` }}
             >
               {!guessObj.win && (
                 <>
                   {guessObj.hint !== "You're very close!" && (
                     <span
-                      className={`Similarity__New${isMobile && ' MobileSimilarityNew'}`}
+                      className={'Similarity__New'}
                       style={{ width: `${guessObj.newSimilarity * (isMobile ? 230 : 460)}px` }}
                     />
                   )}
                   <span
-                    className={`Similarity__Inside${isMobile && ' MobileSimilarityInside'}`}
+                    className={'Similarity__Inside'}
                     style={{ width: `${guessObj.similarity * (isMobile ? 230 : 460)}px` }}
                   />
                 </>
