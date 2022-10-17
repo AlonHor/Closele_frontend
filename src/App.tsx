@@ -51,12 +51,11 @@ function App() {
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowSizeChange);
+    handleWindowSizeChange();
     return () => {
       window.removeEventListener('resize', handleWindowSizeChange);
     }
   }, []);
-
-
 
   const scrollIntoViewRef = useRef<HTMLDivElement>(null);
 
