@@ -680,6 +680,11 @@ react-refresh@^0.14.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.0.tgz#4e02825378a5f227079554d4284889354e5f553e"
   integrity sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==
 
+react-simple-keyboard@^3.4.226:
+  version "3.4.226"
+  resolved "https://registry.yarnpkg.com/react-simple-keyboard/-/react-simple-keyboard-3.4.226.tgz#84a05dadf32c9c8d13855e3ecc73d4e92b15a7d8"
+  integrity sha512-ZoLmHAQZ+Rv7U8D/plWKQy2nkhLfkMJj5iz+/O/VlFKk1rp7yp9XFDqz/josaalZIgjaSAGm4cWZ/wE+w8mLwA==
+
 react-toastify@^9.0.8:
   version "9.0.8"
   resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-9.0.8.tgz#3876c89fc6211a29027b3075010b5ec39ebe4f7e"

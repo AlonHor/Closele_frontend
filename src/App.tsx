@@ -6,6 +6,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import gsap from 'gsap';
 
+import Keyboard from 'react-simple-keyboard';
+import 'react-simple-keyboard/build/css/index.css';
+
 const socket = io('wss://closele-backend.herokuapp.com');
 
 const MAX_LENGTH = 8;
@@ -39,7 +42,7 @@ function App() {
   const [firstLetter, setFirstLetter] = useState<string>('');
   const [length, setLength] = useState<number>(0);
   const [hintLetters, setHintLetters] = useState<string[]>([]);
-  const [gameOver, setGameOver] = useState<boolean>(false);
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
   const scrollIntoViewRef = useRef<HTMLDivElement>(null);
 
@@ -60,7 +63,7 @@ function App() {
     });
 
     socket.on('gameOver', (data: { secretWord: string }) => {
-      setGameOver((go) => {
+      setIsGameOver((go) => {
         if (!go) {
           toast.error(`You gave up! The secret word was ${data.secretWord}`);
           setGuesses((g) => [
@@ -133,20 +136,23 @@ function App() {
     };
   }, []);
 
-  window.onkeydown = (e) => {
-    if (e.key === ' ') e.preventDefault();
-    if (e.key === 'Enter') guess();
-    else if (e.key === 'Backspace') setLiveGuess((lg) => lg.slice(0, -1));
-    else if (e.key === 'Delete') setLiveGuess('');
+  function onKeyPress(button: string) {
+    press(button);
+  }
+
+  function press(key: string) {
+    if (key === 'Enter') guess();
+    else if (key === 'Backspace') setLiveGuess((lg) => lg.slice(0, -1));
+    else if (key === 'Delete') setLiveGuess('');
     else if (
-      e.key.length === 1 &&
-      letters.includes(e.key.toLowerCase()) &&
+      key.length === 1 &&
+      letters.includes(key.toLowerCase()) &&
       liveGuess.length < MAX_LENGTH
     ) {
       setLiveGuess((lg) => {
         const LG = lg;
         setTimeout(() => {
-          gsap.from(`.Char__${e.key.toLowerCase()}__${LG.length}`, {
+          gsap.from(`.Char__${key.toLowerCase()}__${LG.length}`, {
             opacity: 0,
             x: 'random(-100, 100, 5)',
             y: 'random(-100, 100, 5)',
@@ -154,14 +160,19 @@ function App() {
             duration: 0.5,
           });
         }, SHORT_DELAY);
-        return lg + e.key.toLowerCase();
+        return lg + key.toLowerCase();
       });
       scrollToBottom();
     }
+  }
+
+  window.onkeydown = (e) => {
+    press(e.key);
+    if (e.key === ' ') e.preventDefault();
   };
 
   function endGame() {
-    setGameOver(true);
+    setIsGameOver(true);
     socket.disconnect();
     scrollToBottom();
     setLiveGuess('');
@@ -178,7 +189,7 @@ function App() {
   }
 
   function guess() {
-    if (gameOver) return toast.error('The game is over!');
+    if (isGameOver) return toast.error('The game is over!');
     if (liveGuess.match(/^\s*$/)) {
       setLiveGuess('');
       toast.warning('You must enter a word!');
@@ -252,7 +263,7 @@ function App() {
           </p>
         </div>
       )}
-      {firstLetter && length && !gameOver && (
+      {firstLetter && length && !isGameOver && (
         <div>
           <p>
             {`The word starts with ${firstLetter} and is ${length} letters long.`}
@@ -270,13 +281,16 @@ function App() {
           )}
         </div>
       )}
+      <Keyboard
+        onKeyPress={onKeyPress}
+      />
       <p>{`Socket is ${isConnected ? 'connected' : 'disconnected'}.`}</p>
-      {!gameOver && guesses.length > 0 && (
+      {!isGameOver && guesses.length > 0 && (
         <button className="TopLeftButton" onClick={giveUp}>
           {'Give up'}
         </button>
       )}
-      {gameOver && (
+      {isGameOver && (
         <button className="TopLeftButton" onClick={() => window.location.reload()}>
           {'Play again'}
         </button>
