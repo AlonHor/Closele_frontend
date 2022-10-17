@@ -137,13 +137,13 @@ function App() {
   }, []);
 
   function onKeyPress(button: string) {
-    press(button);
+    press(button === 'bksp' ? 'Backspace' : button);
   }
 
   function press(key: string) {
-    if (key === 'Enter') guess();
-    else if (key === 'Backspace') setLiveGuess((lg) => lg.slice(0, -1));
-    else if (key === 'Delete') setLiveGuess('');
+    if (key.toLowerCase() === 'enter') guess();
+    else if (key.toLowerCase() === 'backspace') setLiveGuess((lg) => lg.slice(0, -1));
+    else if (key.toLowerCase() === 'delete') setLiveGuess('');
     else if (
       key.length === 1 &&
       letters.includes(key.toLowerCase()) &&
@@ -283,6 +283,15 @@ function App() {
       )}
       <Keyboard
         onKeyPress={onKeyPress}
+        theme="hg-theme-red"
+        layout={{
+          default: [
+            "q w e r t y u i o p {bksp} {delete} \\",
+            "a s d f g h j k l {enter}",
+            "z x c v b n m",
+            "{space}"
+          ],
+        }}
       />
       <p>{`Socket is ${isConnected ? 'connected' : 'disconnected'}.`}</p>
       {!isGameOver && guesses.length > 0 && (
