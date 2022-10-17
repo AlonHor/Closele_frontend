@@ -283,7 +283,6 @@ function App() {
       )}
       <Keyboard
         onKeyPress={onKeyPress}
-        theme="hg-theme-red"
         layout={{
           default: [
             "q w e r t y u i o p {bksp} {delete} \\",
