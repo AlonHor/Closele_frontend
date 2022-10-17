@@ -151,7 +151,7 @@ function App() {
   }, []);
 
   function onKeyPress(button: string) {
-    press(button === '{bksp}' ? 'Backspace' : button === '{delete}' ? 'Delete' : button === '{enter}' ? 'Enter' : button);
+    press(button === '{delete}' ? 'Delete' : button === '{enter}' ? 'Enter' : button);
   }
 
   function press(key: string) {
@@ -300,7 +300,7 @@ function App() {
           onKeyPress={onKeyPress}
           layout={{
             default: [
-              "q w e r t y u i o p {bksp} {delete}",
+              "q w e r t y u i o p {delete}",
               "a s d f g h j k l {enter}",
               "z x c v b n m",
             ],
@@ -310,7 +310,7 @@ function App() {
           [
             {
               class: "hg-red",
-              buttons: "a b c d e f g h i j k l m n o p q r s t u v w x y z {bksp} {delete} {enter}"
+              buttons: "a b c d e f g h i j k l m n o p q r s t u v w x y z {delete} {enter}"
             }
           ]
         }
