@@ -20,7 +20,12 @@ body {
   min-height: 100vh;
 }
 
-.hg-red {
-  background: rgb(255, 0, 0, 0.7) !important;
+.hg-button {
+  background: rgba(136, 136, 136, 0.7) !important;
   color: white;
+}
+
+.hg-theme-default {
+  background-color: #3e3e3e;
+
 }
