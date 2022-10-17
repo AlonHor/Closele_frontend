@@ -43,10 +43,10 @@ function App() {
   const [length, setLength] = useState<number>(0);
   const [hintLetters, setHintLetters] = useState<string[]>([]);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
-  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   function handleWindowSizeChange() {
-    setWidth(window.innerWidth);
+    setIsMobile(window.innerWidth <= 768)
   }
 
   useEffect(() => {
@@ -151,7 +151,7 @@ function App() {
   }, []);
 
   function onKeyPress(button: string) {
-    press(button === '{bksp}' ? 'Backspace' : button === '{delete}' ? 'Delete' : button === '{space}' ? ' ' : button);
+    press(button === '{bksp}' ? 'Backspace' : button === '{delete}' ? 'Delete' : button === '{space}' ? ' ' : button === '{enter}' ? 'Enter' : button);
   }
 
   function press(key: string) {
@@ -228,20 +228,20 @@ function App() {
               </span>
             )}
             <span
-              className={guessObj.win ? 'Similarity__Win' : 'Similarity__Full'}
-              style={{ width: `${460}px` }}
+              className={guessObj.win ? `Similarity__Win${isMobile && ' MobileSimilarityWin'}` : `Similarity__Full${isMobile && ' MobileSimilarityFull'}`}
+              style={{ width: `${isMobile ? 230 : 460}px` }}
             >
               {!guessObj.win && (
                 <>
                   {guessObj.hint !== "You're very close!" && (
                     <span
-                      className="Similarity__New"
-                      style={{ width: `${guessObj.newSimilarity * 460}px` }}
+                      className={`Similarity__New${isMobile && ' MobileSimilarityNew'}`}
+                      style={{ width: `${guessObj.newSimilarity * (isMobile ? 230 : 460)}px` }}
                     />
                   )}
                   <span
-                    className="Similarity__Inside"
-                    style={{ width: `${guessObj.similarity * 460}px` }}
+                    className={`Similarity__Inside${isMobile && ' MobileSimilarityInside'}`}
+                    style={{ width: `${guessObj.similarity * (isMobile ? 230 : 460)}px` }}
                   />
                 </>
               )}
@@ -251,7 +251,7 @@ function App() {
       </div>
       <div>
         {liveGuess.split('').map((character: string, index) => (
-          <span key={index} className={`Char Char__${character}__${index}${width <= 768 && ' Mobile'}`}>
+          <span key={index} className={`Char Char__${character}__${index}${isMobile && ' MobileChar'}`}>
             {character}
           </span>
         ))}
@@ -295,7 +295,7 @@ function App() {
           )}
         </div>
       )}
-      {width <= 768 && (
+      {isMobile && (
         <Keyboard
           onKeyPress={onKeyPress}
           layout={{

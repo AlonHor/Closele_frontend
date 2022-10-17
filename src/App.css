@@ -28,7 +28,7 @@
   display: inline-block;
 }
 
-.Mobile {
+.MobileChar {
   width: 1rem !important;
   font-size: 1rem !important;
   padding: 1rem !important;
@@ -144,6 +144,11 @@
   margin-bottom: 2rem;
 }
 
+.MobileSimilarityWin {
+  padding: 0.25rem !important;
+  margin-bottom: 1rem !important;
+}
+
 .Similarity__Full {
   display: flex;
   flex-direction: row;
@@ -156,6 +161,12 @@
   transition: all 0.2s;
   margin-bottom: 2rem;
 }
+
+.MobileSimilarityFull {
+  padding: 0.25rem !important;
+  margin-bottom: 1rem !important;
+}
+
 .Similarity__Inside {
   display: flex;
   z-index: 2;
@@ -166,6 +177,11 @@
   padding: 0.5rem;
   transition: all 0.2s;
   border-radius: 0.5rem;
+}
+
+.MobileSimilarityInside {
+  padding: 0.25rem !important;
+  margin-bottom: 1rem !important;
 }
 
 .Similarity__New {
@@ -179,6 +195,11 @@
   padding: 0.5rem;
   transition: all 0.2s;
   border-radius: 0.5rem;
+}
+
+.MobileSimilarityNew {
+  padding: 0.25rem !important;
+  margin-bottom: 1rem !important;
 }
 
 ::selection {
