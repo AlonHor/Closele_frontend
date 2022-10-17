@@ -43,6 +43,20 @@ function App() {
   const [length, setLength] = useState<number>(0);
   const [hintLetters, setHintLetters] = useState<string[]>([]);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
+  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  }, []);
+
+
 
   const scrollIntoViewRef = useRef<HTMLDivElement>(null);
 
@@ -237,7 +251,7 @@ function App() {
       </div>
       <div>
         {liveGuess.split('').map((character: string, index) => (
-          <span key={index} className={`Char Char__${character}__${index}`}>
+          <span key={index} className={`Char Char__${character}__${index}${width <= 768 && ' Mobile'}`}>
             {character}
           </span>
         ))}
@@ -281,25 +295,27 @@ function App() {
           )}
         </div>
       )}
-      <Keyboard
-        onKeyPress={onKeyPress}
-        layout={{
-          default: [
-            "q w e r t y u i o p {bksp} {delete}",
-            "a s d f g h j k l {enter}",
-            "z x c v b n m",
-            "{space}"
-          ],
-        }}
-        buttonTheme={
-          [
-            {
-              class: "hg-red",
-              buttons: "a b c d e f g h i j k l m n o p q r s t u v w x y z {space} {bksp} {delete} {enter}"
-            }
-          ]
-        }
-      />
+      {width <= 768 && (
+        <Keyboard
+          onKeyPress={onKeyPress}
+          layout={{
+            default: [
+              "q w e r t y u i o p {bksp} {delete}",
+              "a s d f g h j k l {enter}",
+              "z x c v b n m",
+              "{space}"
+            ],
+          }}
+          buttonTheme={
+            [
+              {
+                class: "hg-red",
+                buttons: "a b c d e f g h i j k l m n o p q r s t u v w x y z {space} {bksp} {delete} {enter}"
+              }
+            ]
+          }
+        />
+      )}
       <p>{`Socket is ${isConnected ? 'connected' : 'disconnected'}.`}</p>
       {!isGameOver && guesses.length > 0 && (
         <button className="TopLeftButton" onClick={giveUp}>

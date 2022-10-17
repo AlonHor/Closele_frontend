@@ -28,6 +28,14 @@
   display: inline-block;
 }
 
+.Mobile {
+  width: 1rem !important;
+  font-size: 1rem !important;
+  padding: 1rem !important;
+  margin: 0.1rem !important;
+  border-top: white 0.2rem solid !important;
+}
+
 .TopLeftButton {
   top: 0.5rem;
   left: 0.5rem;
