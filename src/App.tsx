@@ -138,6 +138,7 @@ function App() {
 
   function onKeyPress(button: string) {
     press(button === 'bksp' ? 'Backspace' : button);
+    console.log(button);
   }
 
   function press(key: string) {
