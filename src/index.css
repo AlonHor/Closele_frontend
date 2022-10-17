@@ -19,3 +19,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+.hg-red {
+  background: rgb(255, 0, 0, 0.7);
+  color: white;
+}

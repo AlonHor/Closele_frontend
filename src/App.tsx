@@ -137,8 +137,7 @@ function App() {
   }, []);
 
   function onKeyPress(button: string) {
-    press(button === 'bksp' ? 'Backspace' : button);
-    console.log(button);
+    press(button === '{bksp}' ? 'Backspace' : button === '{delete}' ? 'Delete' : button === '{space}' ? ' ' : button);
   }
 
   function press(key: string) {
@@ -286,12 +285,20 @@ function App() {
         onKeyPress={onKeyPress}
         layout={{
           default: [
-            "q w e r t y u i o p {bksp} {delete} \\",
+            "q w e r t y u i o p {bksp} {delete}",
             "a s d f g h j k l {enter}",
             "z x c v b n m",
             "{space}"
           ],
         }}
+        buttonTheme={
+          [
+            {
+              class: "hg-red",
+              buttons: "a b c d e f g h i j k l m n o p q r s t u v w x y z {space} {bksp} {delete} {enter}"
+            }
+          ]
+        }
       />
       <p>{`Socket is ${isConnected ? 'connected' : 'disconnected'}.`}</p>
       {!isGameOver && guesses.length > 0 && (
