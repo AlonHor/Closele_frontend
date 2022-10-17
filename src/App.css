@@ -106,6 +106,10 @@
   transition: all 0.2s;
 }
 
+.MobileGuess {
+  font-size: 1.5rem;
+}
+
 .Hint {
   /* display: flex; */
   /* flex-direction: row; */
@@ -116,6 +120,10 @@
   border-radius: 0.5rem;
   background-color: #333333;
   transition: all 0.2s;
+}
+
+.MobileHint {
+  font-size: 1.5rem;
 }
 
 .Similarity__Full {

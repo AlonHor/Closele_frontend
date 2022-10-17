@@ -219,9 +219,9 @@ function App() {
       <div className="Guesses">
         {guesses.map((guessObj, index) => (
           <div key={index}>
-            <span className="Guess">{guessObj.guess}</span>
+            <span className={`Guess${isMobile && ' MobileHint'}`}>{guessObj.guess}</span>
             {!guessObj.win && (
-              <span className="Hint">
+              <span className={`Hint${isMobile && ' MobileHint'}`}>
                 {guessObj.hint === "You're very close!"
                   ? 'no hint'
                   : guessObj.hint}
