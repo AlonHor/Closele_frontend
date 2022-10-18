@@ -55,6 +55,7 @@ function App() {
     return () => {
       window.removeEventListener('resize', handleWindowSizeChange);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const scrollIntoViewRef = useRef<HTMLDivElement>(null);
@@ -143,6 +144,7 @@ function App() {
       socket.off('gameOver');
       socket.off('info');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function onKeyPress(button: string) {
