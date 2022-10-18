@@ -312,7 +312,7 @@ function App() {
         */
         />
       )}
-      <p>{`Socket is ${isConnected ? 'connected' : 'disconnected'}.`}</p>
+      <div style={{ backgroundColor: (isConnected ? 'green' : 'red'), position: 'absolute', padding: '2rem', borderRadius: '1rem', bottom: 30, right: 30 }} />
       {!isGameOver && guesses.length > 0 && (
         <button className="TopLeftButton" onClick={giveUp}>
           {'Give up'}
