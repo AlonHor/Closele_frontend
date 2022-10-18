@@ -246,7 +246,7 @@ function App() {
       </div>
       <div>
         {liveGuess.split('').map((character: string, index) => (
-          <span key={index} className={`Char__${index}${isMobile ? ' MobileChar' : ''}`}>
+          <span key={index} className={`Char Char__${index}${isMobile ? ' MobileChar' : ''}`}>
             {character}
           </span>
         ))}
