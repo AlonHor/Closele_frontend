@@ -119,11 +119,7 @@ function App() {
         } else {
           toast.info(`Hint: ${data.hint}`);
 
-          setHintLetters((hl) => {
-            if (hl !== data.letters)
-              gsap.to('.Letter', { duration: 0.5, opacity: 1, stagger: 0.1 });
-            return data.letters;
-          });
+          setHintLetters(data.letters);
           setGuesses((g) => [
             ...g,
             {
@@ -165,7 +161,7 @@ function App() {
       setLiveGuess((lg) => {
         const LG = lg;
         setTimeout(() => {
-          gsap.from(`.Char__${key.toLowerCase()}__${LG.length}`, {
+          gsap.from(`.Char__${LG.length}`, {
             opacity: 0,
             x: 'random(-100, 100, 5)',
             y: 'random(-100, 100, 5)',
@@ -250,7 +246,7 @@ function App() {
       </div>
       <div>
         {liveGuess.split('').map((character: string, index) => (
-          <span key={index} className={`Char Char__${character}__${index}${isMobile ? ' MobileChar' : ''}`}>
+          <span key={index} className={`Char__${index}${isMobile ? ' MobileChar' : ''}`}>
             {character}
           </span>
         ))}
