@@ -42,14 +42,6 @@
   }
 }
 
-.MobileChar {
-  width: 0.9rem !important;
-  font-size: 0.9rem !important;
-  padding: 0.7rem !important;
-  margin: 0.1rem !important;
-  border-top: white 0.2rem solid !important;
-}
-
 .TopLeftButton {
   top: 0.5rem;
   left: 0.5rem;
@@ -120,9 +112,11 @@
   transition: all 0.2s;
 }
 
-.MobileGuess {
-  font-size: 1.5rem;
-  padding: 0.5rem;
+@media(max-width: 768px) {
+  .Guess {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
 }
 
 .Hint {
@@ -137,9 +131,11 @@
   transition: all 0.2s;
 }
 
-.MobileHint {
-  font-size: 1.5rem;
-  padding: 0.5rem;
+@media(max-width: 768px) {
+  .Hint {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
 }
 
 .Similarity__Full {
