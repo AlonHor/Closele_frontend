@@ -26,6 +26,6 @@ body {
 }
 
 .hg-theme-default {
-  background-color: #3e3e3e;
+  background-color: #3e3e3e !important;
 }
 
