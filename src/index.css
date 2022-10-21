@@ -22,10 +22,13 @@ body {
 
 .hg-button {
   background: rgba(136, 136, 136, 0.7) !important;
-  color: white;
+  color: white !important;
 }
 
 .hg-theme-default {
   background-color: #3e3e3e !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
 }
 

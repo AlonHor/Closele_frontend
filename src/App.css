@@ -1,8 +1,12 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
+}
+
+.Instructions {
+  padding: 2rem;
 }
 
 .Char {
@@ -24,8 +28,21 @@
   font-size: 3rem;
   font-weight: 400;
   border-top: white 1rem solid;
-  width: 3rem;
+  max-width: 5rem;
+  min-width: 1rem;
   display: inline-block;
+}
+
+@media(max-width: 768px) {
+  .Char {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-top: white 0.5rem solid !important;
+  }
+}
+
+.CharContainer {
+  display: flex;
 }
 
 .MobileChar {
