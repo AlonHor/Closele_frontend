@@ -41,10 +41,6 @@
   }
 }
 
-.CharContainer {
-  display: flex;
-}
-
 .MobileChar {
   width: 0.9rem !important;
   font-size: 0.9rem !important;
