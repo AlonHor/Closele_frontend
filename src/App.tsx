@@ -163,12 +163,13 @@ function App() {
       setLiveGuess((lg) => {
         const LG = lg;
         setTimeout(() => {
+          console.log(`GSAP animating .Char__${LG.length}`)
           gsap.from(`.Char__${LG.length}`, {
             opacity: 0,
             x: 'random(-100, 100, 5)',
             y: 'random(-100, 100, 5)',
             z: 'random(-100, 100, 5)',
-            duration: 0.5,
+            duration: 0.2,
           });
         }, SHORT_DELAY);
         return lg + key.toLowerCase();
