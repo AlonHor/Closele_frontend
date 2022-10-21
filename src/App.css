@@ -182,7 +182,7 @@
 
 .Similarity__Inside {
   display: flex;
-  z-index: 2;
+  z-index: 0;
   flex-direction: row;
   align-items: center;
   justify-content: left;
@@ -194,7 +194,6 @@
 
 .Similarity__New {
   position: absolute;
-  z-index: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
