@@ -259,6 +259,7 @@ function App() {
         theme="dark"
         pauseOnHover={true}
         autoClose={TOAST_CLOSE_DURATION}
+        style={{ userSelect: 'none' }}
       />
       {liveGuess.length === 0 && guesses.length === 0 && (
         <div className="Instructions">
@@ -294,7 +295,7 @@ function App() {
           )}
         </div>
       )}
-      {isMobile && (
+      {isMobile && (<>
         <Keyboard
           onKeyPress={onKeyPress}
           layout={{
@@ -304,18 +305,9 @@ function App() {
               "z x c v b n m",
             ],
           }}
-        /*
-        buttonTheme={
-          [
-            {
-              class: "hg-red",
-              buttons: "a b c d e f g h i j k l m n o p q r s t u v w x y z {delete} {enter}"
-            }
-          ]
-        }
-        */
         />
-      )}
+        <div style={{ paddingTop: '200px' }} />
+      </>)}
       {!isMobile && (
         <div style={{ backgroundColor: (isConnected ? 'green' : 'red'), position: 'fixed', padding: '0.5rem', borderRadius: '0.25rem', bottom: 30, right: 30 }} />
       )}
