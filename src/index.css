@@ -23,6 +23,7 @@ body {
 .hg-button {
   background: rgba(136, 136, 136, 0.7) !important;
   color: white !important;
+  height: 60px !important;
 }
 
 .hg-theme-default {
