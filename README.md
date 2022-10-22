@@ -55,6 +55,6 @@ Pressing on it will vibrate your device *(if supported)*.
 *(if supported)*
 
 Upon **pressing keys** on the keyboard, the device will vibrate for **50ms each key** pressed.<br />
-Upon guessing **correctly**, the device will vibrate for **3 times, 300ms each**.<br />
+Upon guessing **correctly** or giving up, the device will vibrate for **3 times, 300ms each**.<br />
 Upon guessing **incorrectly**, the device will vibrate **once for 200ms**.<br />
 If there's an **error** (for example if a word is not found), the device will vibrate **twice, 50ms each**.<br />
