@@ -116,7 +116,10 @@ function App() {
         if (data.hint === 'not in dict') {
           toast.warning('There is no such word in the dictionary!');
           navigator.vibrate([50, 20, 50]);
-          setLiveGuess('');
+          const OG = data.guess;
+          setTimeout(() => {
+            setLiveGuess(lg => lg === OG ? '' : lg);
+          }, 2000)
         } else if (data.hint === 'error') {
           toast.error('Error: ' + data.err);
           navigator.vibrate([50, 20, 50]);
@@ -216,6 +219,7 @@ function App() {
     if (liveGuess.match(/^\s*$/)) {
       setLiveGuess('');
       toast.warning('You must enter a word!');
+      navigator.vibrate([50, 20, 50]);
       return;
     }
     setLiveGuess((lg) => lg.toLowerCase());
