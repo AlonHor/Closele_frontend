@@ -80,6 +80,7 @@ function App() {
       setIsGameOver((go) => {
         if (!go) {
           toast.error(`You gave up! The secret word was ${data.secretWord}`);
+          navigator.vibrate([300, 100, 300, 100, 300]);
           setGuesses((g) => [
             ...g,
             {
