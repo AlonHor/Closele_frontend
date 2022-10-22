@@ -160,15 +160,17 @@ function App() {
       letters.includes(key.toLowerCase()) &&
       liveGuess.length < MAX_LENGTH
     ) {
+      // setLiveGuess(lg => lg.toLowerCase());
       setLiveGuess((lg) => {
         const LG = lg;
         setTimeout(() => {
+          console.log(`GSAP .Char__${LG.length}`)
           gsap.from(`.Char__${LG.length}`, {
             opacity: 0,
-            x: 'random(-100, 100, 5)',
-            y: 'random(-100, 100, 5)',
-            z: 'random(-100, 100, 5)',
-            duration: 0.2,
+            x: 'random(-50, 50, 5)',
+            y: 'random(-50, 50, 5)',
+            z: 'random(-50, 50, 5)',
+            duration: 0.05,
           });
         }, SHORT_DELAY);
         return lg + key.toLowerCase();

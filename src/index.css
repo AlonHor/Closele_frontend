@@ -23,7 +23,12 @@ body {
 .hg-button {
   background: rgba(136, 136, 136, 0.7) !important;
   color: white !important;
-  height: 60px !important;
+  height: 80px !important;
+  transition: all 0.1s ease-in-out !important;
+}
+
+.hg-button:active {
+  background: rgba(136, 136, 136, 0.9) !important;
 }
 
 .hg-theme-default {
