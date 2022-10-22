@@ -155,7 +155,7 @@ function App() {
 
   function onKeyPress(button: string) {
     if (button !== '{enter}') navigator.vibrate(50);
-    press(button.replaceAll('{', '').replaceAll('}', ''))
+    press(button.replaceAll('{', '').replaceAll('}', '').replaceAll('bksp', 'backspace'))
   }
 
   function press(key: string) {
@@ -276,16 +276,8 @@ function App() {
       {liveGuess.length === 0 && guesses.length === 0 && (
         <div className="Instructions">
           <h1>{'Guess the word!'}</h1>
-          <p>{'Enter a word and press enter to guess.'}</p>
-          <p>{'Press delete to clear the word.'}</p>
-          <p>{'A hint will be given if the word is not correct.'}</p>
           <p>
-            {
-              'The blue bar shows how close the guessed word is to the correct word.'
-            }
-          </p>
-          <p>
-            {'The green bar shows how close the hint is to the correct word.'}
+            {'Instructions can be found '}<a href="https://bit.ly/3TqIDrK" target="_blank">here</a>
           </p>
         </div>
       )}
@@ -312,9 +304,9 @@ function App() {
           onKeyPress={onKeyPress}
           layout={{
             default: [
-              "q w e r t y u i o p {delete}",
+              "q w e r t y u i o p {bksp}",
               "a s d f g h j k l {enter}",
-              "z x c v b n m",
+              "z x c v b n m {delete}",
             ],
           }}
         />
