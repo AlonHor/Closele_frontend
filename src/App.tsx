@@ -307,7 +307,7 @@ function App() {
           )}
         </div>
       )}
-      {isMobile && (<>
+      {isMobile && !isGameOver && (<>
         <Keyboard
           onKeyPress={onKeyPress}
           layout={{
