@@ -148,7 +148,8 @@ function App() {
   }, []);
 
   function onKeyPress(button: string) {
-    press(button === '{delete}' ? 'Delete' : button === '{enter}' ? 'Enter' : button);
+    navigator.vibrate(50);
+    press(button.replaceAll('{', '').replaceAll('}', ''))
   }
 
   function press(key: string) {
