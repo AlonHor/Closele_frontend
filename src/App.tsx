@@ -116,6 +116,7 @@ function App() {
         if (data.hint === 'not in dict') {
           toast.warning('There is no such word in the dictionary!');
           navigator.vibrate([50, 20, 50]);
+          setLiveGuess('');
         } else if (data.hint === 'error') {
           toast.error('Error: ' + data.err);
           navigator.vibrate([50, 20, 50]);
@@ -167,7 +168,6 @@ function App() {
       letters.includes(key.toLowerCase()) &&
       liveGuess.length < MAX_LENGTH
     ) {
-      // setLiveGuess(lg => lg.toLowerCase());
       setLiveGuess((lg) => {
         const LG = lg;
         setTimeout(() => {
@@ -277,7 +277,7 @@ function App() {
         <div className="Instructions">
           <h1>{'Guess the word!'}</h1>
           <p>
-            {'Instructions can be found '}<a href="https://bit.ly/3TqIDrK" target="_blank">here</a>
+            {'Instructions can be found '}<a href="https://bit.ly/3TqIDrK" target="_blank" rel="noreferrer">here</a>
           </p>
         </div>
       )}
