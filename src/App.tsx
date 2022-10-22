@@ -99,6 +99,7 @@ function App() {
     socket.on('hint', (data: Hint) => {
       if (data.win === true) {
         toast.success(`Thats it! The word is ${data.guess}!`);
+        navigator.vibrate([300, 100, 300, 100, 300]);
         endGame();
         setGuesses((g) => [
           ...g,
@@ -113,12 +114,16 @@ function App() {
       } else if (data.hint) {
         if (data.hint === 'not in dict') {
           toast.warning('There is no such word in the dictionary!');
+          navigator.vibrate([50, 20, 50]);
         } else if (data.hint === 'error') {
           toast.error('Error: ' + data.err);
+          navigator.vibrate([50, 20, 50]);
         } else if (data.hint === 'no word') {
           toast.warning('You must enter a word!');
+          navigator.vibrate([50, 20, 50]);
         } else {
           toast.info(`Hint: ${data.hint}`);
+          navigator.vibrate(200);
 
           setHintLetters(data.letters);
           setGuesses((g) => [
@@ -148,7 +153,7 @@ function App() {
   }, []);
 
   function onKeyPress(button: string) {
-    navigator.vibrate(50);
+    if (button !== '{enter}') navigator.vibrate(50);
     press(button.replaceAll('{', '').replaceAll('}', ''))
   }
 
