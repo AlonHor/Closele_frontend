@@ -158,7 +158,7 @@ function App() {
   }, []);
 
   function onKeyPress(button: string) {
-    if (button !== '{enter}') navigator.vibrate(50);
+    if (button !== '{enter}') navigator.vibrate(10);
     press(button.replaceAll('{', '').replaceAll('}', '').replaceAll('bksp', 'backspace'))
   }
 
