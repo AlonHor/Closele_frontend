@@ -13,6 +13,8 @@ Every 5 rounds, you will be hinted with another letter that the word contains *(
 ![image](https://user-images.githubusercontent.com/57628667/197333161-b4c9b0c1-b850-44c8-94b9-02bdcd5313be.png)
 ...
 
+In addition, if your guess contains letters that the secret word has, it will also appear there.
+
 ### Guessing
 Each guess (also referred to as a round) must have between 3 to 8 letters, and can be entered by typing on the keyboard or tapping the keyboard that should appear in mobile.
 
@@ -54,7 +56,7 @@ Pressing on it will vibrate your device *(if supported)*.
 ### Vibrations
 *(if supported)*
 
-Upon **pressing keys** on the keyboard, the device will vibrate for **50ms each key** pressed.<br />
+Upon **pressing keys** on the keyboard, the device will vibrate for **10ms each key** pressed.<br />
 Upon guessing **correctly** or giving up, the device will vibrate for **3 times, 300ms each**.<br />
 Upon guessing **incorrectly**, the device will vibrate **once for 200ms**.<br />
 If there's an **error** (for example if a word is not found), the device will vibrate **twice, 50ms each**.<br />
