@@ -317,7 +317,15 @@ function App() {
         <div style={{ paddingTop: '260px' }} />
       </>)}
       {!isMobile && (
-        <div style={{ backgroundColor: (isConnected ? 'green' : 'red'), position: 'fixed', padding: '0.5rem', borderRadius: '0.25rem', bottom: 30, right: 30 }} />
+        <div
+          style={{
+            backgroundColor: (isConnected ? 'green' : 'red'),
+            position: 'fixed',
+            padding: '0.5rem',
+            borderRadius: '0.5rem',
+            bottom: 30, right: 30
+          }}
+        />
       )}
       {!isGameOver && guesses.length > 0 && (
         <button className="TopLeftButton" onClick={giveUp}>
