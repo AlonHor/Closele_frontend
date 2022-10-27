@@ -1,59 +1,29 @@
 {
-  "name": "closele-pwa",
+  "name": "closele",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^17.0.45",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "gsap": "^3.11.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "react-simple-keyboard": "^3.4.226",
-    "react-toastify": "^9.0.8",
-    "socket.io-client": "^4.5.3",
-    "typescript": "^4.8.4",
-    "web-vitals": "^2.1.4",
-    "workbox-background-sync": "^6.5.4",
-    "workbox-broadcast-update": "^6.5.4",
-    "workbox-cacheable-response": "^6.5.4",
-    "workbox-core": "^6.5.4",
-    "workbox-expiration": "^6.5.4",
-    "workbox-google-analytics": "^6.5.4",
-    "workbox-navigation-preload": "^6.5.4",
-    "workbox-precaching": "^6.5.4",
-    "workbox-range-requests": "^6.5.4",
-    "workbox-routing": "^6.5.4",
-    "workbox-strategies": "^6.5.4",
-    "workbox-streams": "^6.5.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "gsap": "^3.11.3",
+    "next": "13.0.0",
+    "next-pwa": "^5.6.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-simple-keyboard": "^3.4.228",
+    "react-toastify": "^9.0.8",
+    "socket.io-client": "^4.5.3"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/node": "^18.11.7",
+    "@types/react": "18.0.24",
+    "@types/react-dom": "18.0.8",
+    "eslint": "8.26.0",
+    "eslint-config-next": "13.0.0",
+    "typescript": "4.8.4"
   }
 }

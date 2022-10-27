@@ -1,4 +1,50 @@
-#root {
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.hg-button {
+  background: rgba(136, 136, 136, 0.7) !important;
+  color: white !important;
+  height: 80px !important;
+  transition: all 0.1s ease-in-out !important;
+}
+
+.hg-button:active {
+  background: rgba(136, 136, 136, 0.9) !important;
+}
+
+.hg-theme-default {
+  background-color: #3e3e3e !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+}
+
+#__next {
   max-width: 1280px;
   margin: 0 auto;
   /* padding: 2rem; */
@@ -32,6 +78,20 @@
   max-width: 5rem;
   min-width: 1rem;
   display: inline-block;
+  animation-name: charFadeIn;
+  animation-duration: 0.2s;
+  animation-direction: forwards;
+}
+
+@keyframes charFadeIn {
+  0% {    
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 
 @media(max-width: 768px) {

@@ -1,10 +1,11 @@
-import './App.css';
+"use client";
+
+import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react';
 import io from 'socket.io-client';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import gsap from 'gsap';
 
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
@@ -50,6 +51,11 @@ function App() {
   }
 
   useEffect(() => {
+    window.onkeydown = (e) => {
+      press(e.key);
+      if (e.key === ' ') e.preventDefault();
+    };
+
     window.addEventListener('resize', handleWindowSizeChange);
     handleWindowSizeChange();
     return () => {
@@ -163,39 +169,22 @@ function App() {
   }
 
   function press(key: string) {
-    if (key.toLowerCase() === 'enter') guess();
-    else if (key.toLowerCase() === 'backspace') setLiveGuess((lg) => lg.slice(0, -1));
-    else if (key.toLowerCase() === 'delete') setLiveGuess('');
-    else if (
-      key.length === 1 &&
-      letters.includes(key.toLowerCase()) &&
-      liveGuess.length < MAX_LENGTH
-    ) {
-      setLiveGuess((lg) => {
-        const LG = lg;
-        setTimeout(() => {
-          gsap.from(`.Char__${LG.length}`, {
-            opacity: 0,
-            x: 'random(-50, 50, 5)',
-            y: 'random(-50, 50, 5)',
-            z: 'random(-50, 50, 5)',
-            duration: 0.1,
-          });
-          setTimeout(() => {
-            const elements: any = document.getElementsByClassName(`Char__${LG.length}`);
-            elements[0].style.transform = 'translate(0px)';
-          }, 101)
-        }, SHORT_DELAY);
-        return lg + key.toLowerCase();
-      });
-      scrollToBottom();
-    }
+    setLiveGuess((lg) => {
+      let newLiveGuess = lg;
+      if (key.toLowerCase() === 'enter') guess();
+      else if (key.toLowerCase() === 'backspace') newLiveGuess = lg.slice(0, -1);
+      else if (key.toLowerCase() === 'delete') newLiveGuess = '';
+      else if (
+        key.length === 1 &&
+        letters.includes(key.toLowerCase()) &&
+        lg.length < MAX_LENGTH
+      ) {
+        newLiveGuess = (`${lg}${key.toLowerCase()}`)
+        scrollToBottom();
+      }
+      return newLiveGuess
+    })
   }
-
-  window.onkeydown = (e) => {
-    press(e.key);
-    if (e.key === ' ') e.preventDefault();
-  };
 
   function endGame() {
     setIsGameOver(true);
@@ -216,19 +205,34 @@ function App() {
 
   function guess() {
     if (isGameOver) return toast.error('The game is over!');
-    if (liveGuess.match(/^\s*$/)) {
-      setLiveGuess('');
-      toast.warning('You must enter a word!');
-      navigator.vibrate([50, 20, 50]);
-      return;
-    }
-    setLiveGuess((lg) => lg.toLowerCase());
-    GUESS = liveGuess.toLowerCase();
-    socket.emit('guess', GUESS);
+    setLiveGuess((lg) => {
+      let newLiveGuess = lg
+      if (lg.match(/^\s*$/)) {
+        newLiveGuess = ''
+        toast.warning('You must enter a word!');
+        navigator.vibrate([50, 20, 50]);
+        return newLiveGuess;
+      }
+      newLiveGuess = lg.toLowerCase()
+      GUESS = liveGuess.toLowerCase();
+      socket.emit('guess', GUESS);
+      return newLiveGuess;
+    })
   }
 
   return (
     <>
+      <Head>
+        <title>Closele</title>
+        <meta charSet="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="theme-color" content="#242424" />
+        <meta name="description" content="Wordle - but better :D" />
+        <meta name="author" content="Alon" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
       <div className="Guesses">
         {guesses.map((guessObj, index) => (
           <div key={index}>
