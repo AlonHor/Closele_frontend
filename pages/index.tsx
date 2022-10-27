@@ -56,6 +56,15 @@ function App() {
       if (e.key === ' ') e.preventDefault();
     };
 
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/sw.js", { scope: "/" }).then(() => {
+          console.log("Successfully registered sw.js")
+        }).catch(error => {
+          console.log('error while registering sw.js: ' + error)
+        })
+    }
+
     window.addEventListener('resize', handleWindowSizeChange);
     handleWindowSizeChange();
     return () => {
