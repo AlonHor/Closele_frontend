@@ -214,7 +214,7 @@ function App() {
         return newLiveGuess;
       }
       newLiveGuess = lg.toLowerCase()
-      GUESS = liveGuess.toLowerCase();
+      GUESS = newLiveGuess;
       socket.emit('guess', GUESS);
       return newLiveGuess;
     })
