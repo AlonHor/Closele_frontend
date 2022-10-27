@@ -58,11 +58,7 @@ function App() {
 
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("/sw.js", { scope: "/" }).then(() => {
-          console.log("Successfully registered sw.js")
-        }).catch(error => {
-          console.log('error while registering sw.js: ' + error)
-        })
+        .register("/sw.js", { scope: "/" }).catch(() => { })
     }
 
     window.addEventListener('resize', handleWindowSizeChange);
