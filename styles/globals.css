@@ -26,28 +26,64 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-.hg-button {
-  background: rgba(136, 136, 136, 0.7) !important;
-  color: white !important;
-  height: 80px !important;
-  transition: all 0.1s ease-in-out !important;
+.Key {
+  width: 100%;
+  min-width: 1rem;
+  min-height: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
 }
 
-.hg-button:active {
+.Key:active {
   background: rgba(136, 136, 136, 0.9) !important;
 }
 
-.hg-theme-default {
+.Keyboard {
   background-color: #3e3e3e !important;
-  position: fixed !important;
-  bottom: 0 !important;
-  left: 0 !important;
+  position: fixed;
+  user-select: none;
+  border-radius: 1rem;
+  max-height: 10rem;
+  max-width: 40rem;
+  width: 100%;
+  height: 50vw;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.TakeUpSpaceDiv {
+  position: relative;
+  height: 50vw;
+  max-height: 10rem;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .Keyboard {
+    left: 0;
+    transform: translateX(0);
+    max-height: 1000rem;
+    max-width: 4000rem;
+  }
+  .TakeUpSpaceDiv {
+    left: 0;
+    transform: translateX(0);
+    max-height: 1000rem;
+    max-width: 4000rem;
+  }
 }
 
 #__next {
   max-width: 1280px;
   margin: 0 auto;
-  /* padding: 2rem; */
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -219,16 +255,13 @@ body::-webkit-scrollbar {
   justify-content: center;
   margin: 0 auto;
   padding: 0 1rem;
-  /* max-width: 460px; */
-  /* position: absolute; */
   font-size: 3rem;
   font-weight: 400;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .Guess {
-  /* display: flex; */
-  /* flex-direction: row; */
   align-items: center;
   justify-content: center;
   margin: 0.75rem 0.5rem;
@@ -246,8 +279,6 @@ body::-webkit-scrollbar {
 }
 
 .Hint {
-  /* display: flex; */
-  /* flex-direction: row; */
   align-items: center;
   justify-content: center;
   margin: 0.75rem 0.5rem;

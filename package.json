@@ -13,7 +13,6 @@
     "next-pwa": "^5.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-simple-keyboard": "^3.4.228",
     "react-toastify": "^9.0.8",
     "socket.io-client": "^4.5.3"
   },
