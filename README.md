@@ -1,6 +1,6 @@
-# Closele
+<h1 align="center">Closele</h1>
 
-Wordle, but better :D
+<h3 align="center">Wordle, but better :D</h3>
 
 ## Keyboard Usage
 
