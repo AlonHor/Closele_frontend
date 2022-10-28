@@ -254,12 +254,9 @@ function App() {
           </button>
         </Link>
       )}
-      <Hints
-        firstLetter={firstLetter}
-        length={length}
-        isGameOver={isGameOver}
-      />
+      <Hints length={length} isGameOver={isGameOver} />
       <MobileKeyboard
+        firstLetter={firstLetter}
         onKeyPress={onKeyPress}
         isMobile={isMobile}
         isGameOver={isGameOver}
