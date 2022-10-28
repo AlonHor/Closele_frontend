@@ -2,13 +2,15 @@
 
 <h3 align="center">Wordle, but better :D</h3>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f3addbb7-f780-4fef-bd39-42c5917f90b0/deploy-status)](https://app.netlify.com/sites/closele/deploys)
+
 ## Keyboard Usage
 
 - `Letters`: type a word
 - `Backspace`: remove last letter
 - `Delete`: remove entire word
 - `Enter`: submit guess
-- `Enter` *(after game is over)*: play again
+- `Enter` _(after game is over)_: play again
 
 ## Game Mechanics
 
