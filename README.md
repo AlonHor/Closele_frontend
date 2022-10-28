@@ -2,33 +2,39 @@
 
 Wordle, but better :D
 
+## Keyboard Usage
+
+- `Letters`: type a word
+- `Backspace`: remove last letter
+- `Delete`: remove entire word
+- `Enter`: submit guess
+- `Enter` *(after game is over)*: play again
+
 ## Game Mechanics
 
 ### The secret word
 
 When the game begins, you are assigned with a secret word _(that you obviously don't know)_, and your mission is _(obviously)_ to find that secret word.
 
-At the begginning, you are given the length of the secret word and the first letter of it:<br />
-![image](https://user-images.githubusercontent.com/57628667/197333031-b80fa51b-afd7-44a3-93e9-5ab7c38739e6.png)
+At the begginning, you are given the length of the secret word:<br />
+![image](https://user-images.githubusercontent.com/57628667/198729953-6e9f1d71-09cb-4525-aa93-cdd5113df344.png)
 
-Every 5 rounds, you will be hinted with another letter that the word contains _(unsorted)_:<br />
-![image](https://user-images.githubusercontent.com/57628667/197333128-a147fc07-fa58-4bda-802b-c7ec4db58489.png)
-![image](https://user-images.githubusercontent.com/57628667/197333161-b4c9b0c1-b850-44c8-94b9-02bdcd5313be.png)
+When guessing a word, if your word contains letters from the secret word, the keyboard will color the letters in green, and the letters that don't appear in the word in dark gray.<br />
+![image](https://user-images.githubusercontent.com/57628667/198730644-aa686f0d-e174-45b7-aab6-6a7dbd5eb8c8.png)
+![image](https://user-images.githubusercontent.com/57628667/198730662-97851588-cf0b-42ac-854c-0d51debe1221.png)
 ...
-
-In addition, if your guess contains letters that the secret word has, it will also appear there.
 
 ### Guessing
 
-Each guess (also referred to as a round) must have between 3 to 8 letters, and can be entered by typing on the keyboard or tapping the keyboard that should appear in mobile.
-
-To submit, press `Enter`.<br />
-To delete the entire word, press `Delete`.<br />
-To delete the last letter, press `Backspace`.
+Guesses must be 3 - 8 letters long.
 
 If your guess was **correct**, you _(obviously)_ win.
 
 If your guess was **incorrect**, you are given a hint (word), that its meaning is closer to the secret word, and also close to your guess.<br />
+![image](https://user-images.githubusercontent.com/57628667/198730967-8b940dc6-0760-4562-973c-a06773fc945b.png)
+
+Guess = buying, Hint = emphasis.
+
 You are also given a "similarity" bar, that has a blue line and a green line.<br />
 The **blue** line is the similarity (in meaning) between your guess and the secret word.<br />
 The **green** line is the similarity (in meaning) between the hint to the secret word.
@@ -38,10 +44,10 @@ The green bar will always be larger than the blue bar.
 ![image](https://user-images.githubusercontent.com/57628667/197333864-97c99277-2d14-4c0d-a9ca-1fc3794918a4.png)
 ![image](https://user-images.githubusercontent.com/57628667/197333911-9cde45ee-d936-451d-be98-675dd4a9b349.png)
 
-In case only the **blue** bar is visible and the hint is `no hint`, that means your guess was **REALLY** close.<br />
+If the **blue** bar is full and the hint is `no hint`, that means your guess was **REALLY** close.<br />
 ![image](https://user-images.githubusercontent.com/57628667/197334192-59bd2d70-4fc9-40af-b9b8-c89a2de178e3.png)
 
-In case only the **green** bar is visible and there's no hint, that means you have won!<br />
+If the **green** bar is full, you win!<br />
 ![image](https://user-images.githubusercontent.com/57628667/197334233-445664d0-1b8d-42d6-a229-aeb3cc4adcbb.png)
 
 If you wish to give up, press the give up button in the top left:<br />
@@ -50,5 +56,3 @@ That will reveal the secret word and end the game.
 
 After winning (or giving up) you can play again by pressing the play again button in the top left:<br />
 ![image](https://user-images.githubusercontent.com/57628667/197333378-5207fe3b-6dd9-4bd9-a7f1-e1f67a24229a.png)
-
-_Better version of this README will be coming soon._
