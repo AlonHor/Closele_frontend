@@ -245,7 +245,7 @@ function App() {
         style={{ userSelect: "none" }}
       />
       {liveGuess.length === 0 && guesses.length === 0 && (
-        <a href="https://github.com/AlonHor/instructions">
+        <a href="https://github.com/AlonHor/Closele_frontend/blob/master/README.md">
           <button className="MiddleButton" style={{ color: "white" }}>
             Instructions
           </button>
