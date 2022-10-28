@@ -12,7 +12,6 @@ export default function MobileKeyboard(props: {
   onKeyPress: any;
   includingKeys: string[];
   excludingKeys: string[];
-  firstLetter: string;
 }) {
   return (
     <Fragment>
@@ -35,15 +34,12 @@ export default function MobileKeyboard(props: {
                     className="Key"
                     style={{
                       backgroundColor: `${
-                        props.firstLetter === key
-                          ? "lightgreen"
-                          : props.includingKeys.includes(key)
+                        props.includingKeys.includes(key)
                           ? "green"
                           : props.excludingKeys.includes(key)
                           ? "#222"
                           : "#5f5f5f"
                       }`,
-                      color: `${props.firstLetter === key ? "black" : "white"}`,
                     }}
                     onClick={() => props.onKeyPress(key)}
                   >

@@ -43,7 +43,6 @@ function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [liveGuess, setLiveGuess] = useState<string>("");
   const [guesses, setGuesses] = useState<Guess[]>([]);
-  const [firstLetter, setFirstLetter] = useState<string>("");
   const [length, setLength] = useState<number>(0);
   const [includingKeys, setIncludingKeys] = useState<string[]>([]);
   const [excludingKeys, setExcludingKeys] = useState<string[]>([]);
@@ -88,8 +87,7 @@ function App() {
       setIsConnected(false);
     });
 
-    socket.on("info", (data: { firstLetter: string; length: number }) => {
-      setFirstLetter(data.firstLetter);
+    socket.on("info", (data: { length: number }) => {
       setLength(data.length);
     });
 
@@ -256,7 +254,6 @@ function App() {
       )}
       <Hints length={length} isGameOver={isGameOver} />
       <MobileKeyboard
-        firstLetter={firstLetter}
         onKeyPress={onKeyPress}
         isMobile={isMobile}
         isGameOver={isGameOver}
