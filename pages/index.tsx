@@ -1,6 +1,7 @@
-"use client";
+// "use client";
 
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react';
 import io from 'socket.io-client';
 
@@ -290,7 +291,7 @@ function App() {
         <div className="Instructions">
           <h1>{'Guess the word!'}</h1>
           <p>
-            {'Instructions can be found '}<a href="https://bit.ly/3TqIDrK" target="_blank" rel="noreferrer">here</a>
+            {'Instructions can be found '}<a><Link href="/instructions">here</Link></a>
           </p>
         </div>
       )}
