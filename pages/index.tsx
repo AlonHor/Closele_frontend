@@ -1,6 +1,5 @@
 "use client";
 
-import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react';
 import io from 'socket.io-client';
@@ -8,8 +7,10 @@ import io from 'socket.io-client';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Keyboard from 'react-simple-keyboard';
-import 'react-simple-keyboard/build/css/index.css';
+import Guesses from '../components/Guesses';
+import LiveGuess from '../components/LiveGuess';
+import Hints from '../components/Hints';
+import MobileKeyboard from '../components/MobileKeyboard';
 
 const socket = io('wss://closele-backend.herokuapp.com');
 
@@ -228,59 +229,8 @@ function App() {
 
   return (
     <div id="game">
-      <Head>
-        <title>Closele</title>
-        <meta charSet="utf-8" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-        <meta name="theme-color" content="#242424" />
-        <meta name="description" content="Wordle - but better :D" />
-        <meta name="author" content="Alon" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
-        <link rel="manifest" href="/manifest.json" />
-      </Head>
-      <div className="Guesses">
-        {guesses.map((guessObj, index) => (
-          <div key={index}>
-            <span className={`Guess`}>{guessObj.guess}</span>
-            {!guessObj.win && (
-              <span className={`Hint`}>
-                {guessObj.hint === "You're very close!"
-                  ? 'no hint'
-                  : guessObj.hint}
-              </span>
-            )}
-            <span
-              className={guessObj.win ? 'Similarity__Win' : 'Similarity__Full'}
-              style={{ width: `${isMobile ? 230 : 460}px` }}
-            >
-              {!guessObj.win && (
-                <>
-                  {guessObj.hint !== "You're very close!" && (
-                    <span
-                      className={'Similarity__New'}
-                      style={{ width: `${guessObj.newSimilarity * (isMobile ? 230 : 460)}px` }}
-                    />
-                  )}
-                  <span
-                    className={'Similarity__Inside'}
-                    style={{ width: `${guessObj.similarity * (isMobile ? 230 : 460)}px` }}
-                  />
-                </>
-              )}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div>
-        {liveGuess.split('').map((character: string, index) => (
-          <span key={index} className={`Char Char__${index}`} style={{
-            width: `calc(${100 / liveGuess.length}vw - 4.4rem)`
-          }}>
-            {character}
-          </span>
-        ))}
-      </div>
+      <Guesses guesses={guesses} isMobile={isMobile} />
+      <LiveGuess liveGuess={liveGuess} />
       <ToastContainer
         theme="dark"
         pauseOnHover={true}
@@ -290,37 +240,8 @@ function App() {
       {liveGuess.length === 0 && guesses.length === 0 && (
         <Link href="/instructions"><button className='MiddleButton' style={{ color: 'white' }}>Instructions</button></Link>
       )}
-      {firstLetter && length && !isGameOver && (
-        <div>
-          <p>
-            {`The word starts with ${firstLetter} and is ${length} letters long.`}
-          </p>
-          {hintLetters.length > 0 && (
-            <p>
-              {'The word contains the letter(s) '}
-              {hintLetters.map((hintLetter: string, index) => (
-                <span key={index} className="Letter">
-                  {hintLetter}
-                  {index === hintLetters.length - 1 ? '' : ', '}
-                </span>
-              ))}
-            </p>
-          )}
-        </div>
-      )}
-      {isMobile && !isGameOver && (<>
-        <Keyboard
-          onKeyPress={onKeyPress}
-          layout={{
-            default: [
-              "q w e r t y u i o p {bksp}",
-              "a s d f g h j k l {enter}",
-              "z x c v b n m {delete}",
-            ],
-          }}
-        />
-        <div style={{ paddingTop: '260px' }} />
-      </>)}
+      <Hints firstLetter={firstLetter} length={length} isGameOver={isGameOver} hintLetters={hintLetters} />
+      <MobileKeyboard onKeyPress={onKeyPress} isMobile={isMobile} isGameOver={isGameOver} />
       {!isMobile && (
         <div
           style={{
