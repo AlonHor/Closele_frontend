@@ -161,7 +161,7 @@ body::-webkit-scrollbar {
   line-height: inherit;
   font-weight: inherit;
   color: inherit;
-  background-color: transparent;
+  background-color: #242424;
   border: none;
   outline: 1px solid #ffffff;
   -webkit-appearance: none;
@@ -192,7 +192,7 @@ body::-webkit-scrollbar {
   line-height: inherit;
   font-weight: inherit;
   color: inherit;
-  background-color: transparent;
+  background-color: #242424;
   border: none;
   outline: 1px solid #ffffff;
   -webkit-appearance: none;
@@ -221,7 +221,7 @@ body::-webkit-scrollbar {
   line-height: inherit;
   font-weight: inherit;
   color: inherit;
-  background-color: transparent;
+  background-color: #242424;
   border: none;
   outline: 1px solid #ffffff;
   -webkit-appearance: none;
