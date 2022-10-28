@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import Head from 'next/head'
 import Link from 'next/link'
@@ -227,7 +227,7 @@ function App() {
   }
 
   return (
-    <>
+    <div id="game">
       <Head>
         <title>Closele</title>
         <meta charSet="utf-8" />
@@ -288,12 +288,7 @@ function App() {
         style={{ userSelect: 'none' }}
       />
       {liveGuess.length === 0 && guesses.length === 0 && (
-        <div className="Instructions">
-          <h1>{'Guess the word!'}</h1>
-          <p>
-            {'Instructions can be found '}<a><Link href="/instructions">here</Link></a>
-          </p>
-        </div>
+        <Link href="/instructions"><button className='MiddleButton' style={{ color: 'white' }}>Instructions</button></Link>
       )}
       {firstLetter && length && !isGameOver && (
         <div>
@@ -348,7 +343,7 @@ function App() {
         </button>
       )}
       <div ref={scrollIntoViewRef} />
-    </>
+    </div>
   );
 }
 

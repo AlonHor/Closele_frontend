@@ -48,8 +48,16 @@ body::-webkit-scrollbar {
   max-width: 1280px;
   margin: 0 auto;
   /* padding: 2rem; */
-  text-align: center;
   -webkit-tap-highlight-color: transparent;
+}
+
+#game {
+  text-align: center;
+}
+
+#instructions {
+  padding: 2rem !important;
+  min-width: 0px !important;
 }
 
 .Instructions {
@@ -112,7 +120,6 @@ body::-webkit-scrollbar {
   color: inherit;
   background-color: transparent;
   border: none;
-  /* outline: none; */
   outline: 1px solid #ffffff;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -131,6 +138,65 @@ body::-webkit-scrollbar {
 }
 
 .TopLeftButton:active {
+  background-color: #444;
+}
+
+.TopRightButton {
+  top: 0.5rem;
+  right: 0.5rem;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  outline: 1px solid #ffffff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
+  padding: 0.5rem;
+  transition: all 0.2s;
+  font-weight: 400;
+  position: fixed;
+}
+
+.TopRightButton:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+
+.TopRightButton:active {
+  background-color: #444;
+}
+
+.MiddleButton {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  outline: 1px solid #ffffff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
+  padding: 0.5rem;
+  transition: all 0.2s;
+  font-weight: 400;
+}
+
+.MiddleButton:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+
+.MiddleButton:active {
   background-color: #444;
 }
 
