@@ -246,11 +246,11 @@ function App() {
         style={{ userSelect: "none" }}
       />
       {liveGuess.length === 0 && guesses.length === 0 && (
-        <Link href="/instructions">
+        <a href="https://github.com/AlonHor/instructions">
           <button className="MiddleButton" style={{ color: "white" }}>
             Instructions
           </button>
-        </Link>
+        </a>
       )}
       <Hints length={length} isGameOver={isGameOver} />
       <MobileKeyboard
