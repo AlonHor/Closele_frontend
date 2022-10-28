@@ -26,6 +26,9 @@ When guessing a word, if your word contains letters from the secret word, the ke
 ![image](https://user-images.githubusercontent.com/57628667/198730662-97851588-cf0b-42ac-854c-0d51debe1221.png)
 ...
 
+You will very quickly find yourself with a lot of information about your word!<br />
+![image](https://user-images.githubusercontent.com/57628667/198733512-3c59dd43-3514-4136-8904-4545704f39cf.png)
+
 ### Guessing
 
 Guesses must be 3 - 8 letters long.
