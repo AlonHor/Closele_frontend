@@ -12,6 +12,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
+@media (max-width: 768px) {
+  *, *::before, *::after {
+    user-select: none;
+  }
+}
+
 body {
   margin: 0;
   display: flex;
@@ -30,10 +36,11 @@ body::-webkit-scrollbar {
   width: 100%;
   min-width: 1rem;
   min-height: 2rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ffffff1f;
+  margin: 1px;
   display: flex;
   justify-content: center;
-  margin: 0.2rem;
   align-items: center;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
