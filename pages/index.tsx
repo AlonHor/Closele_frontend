@@ -47,6 +47,7 @@ function App() {
   const [excludingKeys, setExcludingKeys] = useState<string[]>([]);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [firstLetter, setFirstLetter] = useState<string>('');
 
   function handleWindowSizeChange() {
     setIsMobile(window.innerWidth <= 768);
@@ -62,7 +63,7 @@ function App() {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/sw.js", { scope: "/" })
-        .catch(() => {});
+        .catch(() => { });
     }
 
     window.addEventListener("resize", handleWindowSizeChange);
@@ -86,8 +87,9 @@ function App() {
       setIsConnected(false);
     });
 
-    socket.on("info", (data: { length: number }) => {
+    socket.on("info", (data: { length: number, firstLetter: string }) => {
       setLength(data.length);
+      setFirstLetter(data.firstLetter);
     });
 
     socket.on("gameOver", (data: { secretWord: string }) => {
@@ -258,6 +260,7 @@ function App() {
         isGameOver={isGameOver}
         includingKeys={includingKeys}
         excludingKeys={excludingKeys}
+        firstLetter={firstLetter}
       />
       {!isMobile && (
         <div
