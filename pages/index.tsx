@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, lazy } from "react";
 import io from "socket.io-client";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Guesses from "../components/Guesses";
-import LiveGuess from "../components/LiveGuess";
-import Hints from "../components/Hints";
-import MobileKeyboard from "../components/MobileKeyboard";
+const Guesses = lazy(() => import("../components/Guesses"));
+const LiveGuess = lazy(() => import("../components/LiveGuess"));
+const Hints = lazy(() => import("../components/Hints"));
+const MobileKeyboard = lazy(() => import("../components/MobileKeyboard"));
 
 const socket = io("wss://closele-backend.herokuapp.com");
 
