@@ -11,7 +11,7 @@ import LiveGuess from "../components/LiveGuess";
 import Hints from "../components/Hints";
 import MobileKeyboard from "../components/MobileKeyboard";
 
-const socket = io("wss://closele-backend.herokuapp.com");
+const socket = io("wss://closele.herokuapp.com");
 
 const MAX_LENGTH = 8;
 const SHORT_DELAY = 10;
@@ -47,7 +47,7 @@ function App() {
   const [excludingKeys, setExcludingKeys] = useState<string[]>([]);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [firstLetter, setFirstLetter] = useState<string>('');
+  const [firstLetter, setFirstLetter] = useState<string>("");
 
   function handleWindowSizeChange() {
     setIsMobile(window.innerWidth <= 768);
@@ -63,7 +63,7 @@ function App() {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/sw.js", { scope: "/" })
-        .catch(() => { });
+        .catch(() => {});
     }
 
     window.addEventListener("resize", handleWindowSizeChange);
@@ -87,7 +87,7 @@ function App() {
       setIsConnected(false);
     });
 
-    socket.on("info", (data: { length: number, firstLetter: string }) => {
+    socket.on("info", (data: { length: number; firstLetter: string }) => {
       setLength(data.length);
       setFirstLetter(data.firstLetter);
     });
